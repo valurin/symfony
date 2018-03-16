@@ -67,11 +67,11 @@ class Ticket
 	 * 
 	 * @ORM\Column(type="boolean")
 	 */
-	protected $close;
+	protected $close = '0';
 
 	/**
 	* Get releaseOn
-	* @return string
+	* @return int
 	*/
 
 	public function getClose(){
@@ -80,11 +80,11 @@ class Ticket
 
 	/**
 	* Set close
-	* @param string $Close 
+	* @param int $Close 
 	* @return Ticket
 	*/
 
-	public function setClose($close = 0){
+	public function setClose($close){
 		$this ->close = $close;
 	}
 	/**
@@ -111,13 +111,6 @@ class Ticket
 	public function setDescription($description){
 		$this ->description = $description;
 	}
-
-
-
-
-
-
-
 	/**
 	 * 
 	 * @ORM\Column(type="integer")
@@ -142,15 +135,35 @@ class Ticket
 	public function setUrgence($urgence){
 		$this ->urgence = $urgence;
 	}
+	/**
+	 * 
+	 * @ORM\Column(type="integer")
+	 */
+	protected $numberReturn='0';
 
+	/**
+	* Get numberReturn
+	* @return int
+	*/
 
+	public function getNumberReturn(){
+		return $this->numberReturn;
+	}
+
+	/**
+	* Set numberReturn
+	* @param int $NumberReturn 
+	* @return Ticket
+	*/
+
+	public function setNumberReturn($numberReturn){
+		$this ->numberReturn = $numberReturn;
+	}
 
 	/*
 	0	$machine	class::machine
 	0	$personne	class::personne
-	1	$descr	varchar2()
 	0	$type	class::Type
-	1	$urg	int
 	1	$nb_red int
 
 	*/

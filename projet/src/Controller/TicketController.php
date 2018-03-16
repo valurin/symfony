@@ -42,8 +42,6 @@ class TicketController extends Controller
             'Peu urgent' => 1,
             'Urgent' =>2,
             'Très urgent' =>3,
-
-
         ),))
         ->add("save", SubmitType::class, ["label" => "create Ticket"])
         ->getForm();
@@ -52,7 +50,7 @@ class TicketController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($ticket);
             $em->flush();
-            return $this->redirectToRoute("ticket.all");
+            return $this->redirectToRoute("ticket.add");
         }
         return $this->render("main\add.html.twig", ["form" => $form->createView()]);
     }
@@ -63,9 +61,11 @@ class TicketController extends Controller
      */
  	
  	public function all(){
+        $tickets = new Ticket();
  		$em = $this->getDoctrine()->getManager();
         $products = $em->getRepository(Ticket::class)->findAll();
         return ["tickets" => $tickets];
- 	}
+ 	
+    }
 	
 }
