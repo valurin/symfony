@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template; 
 use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,14 @@ class TicketController extends Controller
         $form = $this->createFormBuilder($ticket)
         ->add("name", TextType::class)
         ->add("releaseOn", DateType::class, ["widget" => "single_text"])
+        ->add("description", TextType::class)
+        ->add("urgence", ChoiceType::class, array('choices'=>array(
+            'Peu urgent' => 1,
+            'Urgent' =>2,
+            'Très urgent' =>3,
+
+
+        ),))
         ->add("save", SubmitType::class, ["label" => "create Ticket"])
         ->getForm();
         $form->handleRequest($request);
