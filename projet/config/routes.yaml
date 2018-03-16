@@ -14,3 +14,6 @@ ticket.all:
 app_ticket:
   path: /ticket
   controller: App\Controller\TicketController::homeTicket
+person_connect:
+    path: /connect
+    controller: App\Controller\PersonController::connect
