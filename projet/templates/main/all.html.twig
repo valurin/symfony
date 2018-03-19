@@ -1,24 +1,16 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <a href="{{ url("ticket.add") }}">Add</a>
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Release On</th>
-            <th>Action</th>
-        </tr>
         {% for ticket in tickets %}
-            <tr>
-                <td>{{ ticket.name }}</td>
-                <td>{{ ticket.releaseOn|date }}</td>
-                <td>
-                    <a onclick="return confirm('are you sure?');" href="{{ url("ticket.delete", {"ticket":ticket.id}) }}">Delete</a>
-                </td>
-            </tr>
+            <div class="Ticket">
+                <p>demandeur : {{ ticket.name }}</p>
+                <p>date : {{ ticket.releaseOn|date }}</p>
+                <p>Description : {{ ticket.description }}</p>
+                <p>{{ ticket.urgence }}</p>
+                
+                <a onclick="return confirm('are you sure?');" href="{{ url("app_ticket_del", {"ticket":ticket.id}) }}">Delete</a>
+            </div>
+            
         {% else %}
-            <tr>
-                <td colspan="3">No content available</td>
-            </tr>
+                <p>No content available</p>
         {% endfor %}
-    </table>
 {% endblock %}

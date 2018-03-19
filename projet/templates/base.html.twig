@@ -2,10 +2,17 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="/css/style.css">
+        <title>{% block title %}Ticket{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <div>
+            <a href="{{ url("app_ticket") }}">Ticket</a>
+            <a href="{{ url("ticket.all") }}">Tous les tickets</a>
+            <a href="{{ url("ticket.add") }}">Ajouter un ticket</a>
+            <a href="{{ url("app_home") }}">Page d'accueil</a>
+        </div>
         {% block body %}{% endblock %}
         <footer>
             <hr/>
