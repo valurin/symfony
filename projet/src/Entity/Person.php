@@ -56,7 +56,7 @@ class Person
 	* @return string
 	*/
 	public function getFirstName(){
-		return $this->name;
+		return $this->firstName;
 	}
 
 	/**
