@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ url("poste.add") }}">Add</a>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Batiment</th>
+            <th>Action</th>
+        </tr>
+        {% for poste in postes %}
+            <tr>
+                <td>{{ poste.name }}</td>
+                <td>{{ poste.batiment }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No content available</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
