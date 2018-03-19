@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Release On</th>
+            <th>Action</th>
+        </tr>
+        {% for person in persons %}
+            <tr>
+                <td>{{ person.firstName }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No content available</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

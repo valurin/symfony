@@ -15,5 +15,18 @@ app_ticket:
   path: /ticket
   controller: App\Controller\TicketController::homeTicket
 ticket.del:
-    path: /ticket/del
-    controller: App\Controller\TicketController::del
+  path: /ticket/del
+  controller: App\Controller\TicketController::del
+person_connect:
+    path: /connect
+    controller: App\Controller\PersonController::connect
+person_add:
+    path: /person/add
+    controller: App\Controller\PersonController::add
+person_all:
+    path: /person/all
+    controller: App\Controller\PersonController::all
+person_del:
+    path: /person/del
+    controller: App\Controller\PersonController::del
+
