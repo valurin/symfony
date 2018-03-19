@@ -41,7 +41,15 @@ class Person
 	 * @ORM\Column(type="text", length=255)
 	 */
 	protected $password;
-	
+
+
+	/**
+	* Get Id
+	* @return integer
+	*/
+	public function getId(){
+		return $this->id;
+	}
 	
 	/**
 	* Get firstName
