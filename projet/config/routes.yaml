@@ -14,6 +14,9 @@ ticket.all:
 app_ticket:
   path: /ticket
   controller: App\Controller\TicketController::homeTicket
+ticket.del:
+  path: /ticket/del
+  controller: App\Controller\TicketController::del
 person_connect:
     path: /connect
     controller: App\Controller\PersonController::connect
@@ -26,3 +29,4 @@ person_all:
 person_del:
     path: /person/del
     controller: App\Controller\PersonController::del
+

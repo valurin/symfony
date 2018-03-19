@@ -4,17 +4,19 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template; 
+use Symfony\Component\HttpFoundation\Request;
 class HomeController extends Controller
 {
+
+	/**
+     * @Route("/home", name="home")
+     * @Template("main/home.html.twig")
+     */
     public function home()
     {
-    	return new Response(
-            "<html><body>
-            	<h1>Page des tickets github ready</h1>
-            	<p>Page de base, a remplacer par la co plus tard, faut maintenant gérer les tickets</p>
-            </body></html>"
-        );
+    
     }
 
 }
