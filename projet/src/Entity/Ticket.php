@@ -16,6 +16,14 @@ class Ticket
      */
     private $id;
 
+	/**
+	* Get id
+	* @return integer
+	*/
+	public function getId(){
+		return $this->id;
+	}
+
     /**
      * 
 	 * @ORM\Column(type="text", length=255)
@@ -164,7 +172,6 @@ class Ticket
 	0	$machine	class::machine
 	0	$personne	class::personne
 	0	$type	class::Type
-	1	$nb_red int
 
 	*/
 

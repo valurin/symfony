@@ -17,14 +17,10 @@ class TicketController extends Controller
 	
 	/**
      * @Route("/ticket", name="ticket.home")
+     * @Template("main/ticket.html.twig")
      */
 	public function homeTicket(){
-		return new Response(
-            "<html><body>
-            	<h1>Page de choix</h1>
-            	<p>check /add ou /all </p>
-            </body></html>"
-        );
+	
 	}
 
  	/**
@@ -61,11 +57,24 @@ class TicketController extends Controller
      */
  	
  	public function all(){
-        $tickets = new Ticket();
+        $tickets=array();
  		$em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository(Ticket::class)->findAll();
+        $tickets= $em->getRepository(Ticket::class)->findAll();
+        //$tickets= $em->getRepository(Ticket::class)->findBy(['urgence'=>1]);
+        //$tickets->orderBy('urgence','ASC');
         return ["tickets" => $tickets];
  	
+    }
+
+    /**
+    * @Route("/ticket/del/{ticket}")
+    * @Template("main/all.html.twig")
+    */
+    public function del(Ticket $ticket){
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($ticket);
+        $em->flush();
+        return $this->redirectToRoute("ticket.all");
     }
 	
 }
