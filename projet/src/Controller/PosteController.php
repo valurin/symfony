@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template; 
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Poste;
+use App\Entity\Batiment;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PosteController extends Controller
 {
@@ -35,15 +37,12 @@ class PosteController extends Controller
         if($poste ==null )
             $poste = new Poste();
         $form = $this->createFormBuilder($poste)
-        ->add("name", TextType::class)    
-        ->add("batiment", ChoiceType::class, function(){
-            $batiments = $this->getDoctrine()->getRepository(Batiment::class)->findAll();
-            $bat = array();
+        ->add("name", TextType::class)  
+        ->add("batiment", EntityType::class, array(
+            'class' => Batiment::class,
+            'choice_label' => 'name'
+        ))
 
-
-            foreach($batiments as $batiment)
-                $bat[$batiment->getId()] = implode(' | ', $batiment->getName());
-        })
         ->add("save", SubmitType::class, ["label" => "create Poste"])
         ->getForm();
         $form->handleRequest($request);
@@ -63,7 +62,7 @@ class PosteController extends Controller
  	
  	public function all(){
  		$em = $this->getDoctrine()->getManager();
-        $postes = $em->getRepository(Postes::class)->findAll();
+        $postes = $em->getRepository(Poste::class)->findAll();
         return ["postes" => $postes];
  	}
 	
