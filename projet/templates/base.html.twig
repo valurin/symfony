@@ -6,18 +6,23 @@
         <title>{% block title %}Ticket{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
+    {% block body %}
     <body>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
         <div>
             <a href="{{ url("app_ticket") }}">Ticket</a>
             <a href="{{ url("ticket.all") }}">Tous les tickets</a>
             <a href="{{ url("ticket.add") }}">Ajouter un ticket</a>
             <a href="{{ url("app_home") }}">Page d'accueil</a>
         </div>
-        {% block body %}{% endblock %}
-        <footer>
-            <hr/>
-            &copy; Jonathan Polydoras
-        </footer>
+        {% endif %}
+        
         {% block javascripts %}{% endblock %}
     </body>
+    {% endblock %}
+    <footer>
+        <hr/>
+        &copy; Jonathan Polydoras - Yannis Ravanel - Romain Christy - Lucas Persson
+    </footer>
 </html>
