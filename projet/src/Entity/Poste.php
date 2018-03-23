@@ -25,9 +25,26 @@ class Poste
 
 	/**
      * @ORM\ManyToOne(targetEntity="App\Entity\Batiment", inversedBy="postes")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $batiment;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="postes")
+     */
+    private $ticket;
+
+        public function __construct()
+    {
+        $this ->tickets = new ArrayCollection();
+    }
+    /**
+     * @return Collection|Poste[]
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
 
 
     /**
@@ -62,13 +79,18 @@ class Poste
 
 
 
-    public function getBatiment(): Batiment
+    public function getBatiment()
     {
         return $this->batiment;
     }
 
-    public function setBatiment(Category $batiment)
+    public function setBatiment(Batiment $batiment)
     {
         $this->batiment = $batiment;
     }
+
+    public function __toString(){
+		return $this->batiment->getName()." - ".$this->name;
+	}
+	
 }

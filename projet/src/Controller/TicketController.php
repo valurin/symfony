@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template; 
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Ticket;
+use App\Entity\Poste;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class TicketController extends Controller
 {
@@ -39,6 +41,9 @@ class TicketController extends Controller
             'Urgent' =>2,
             'Très urgent' =>3,
         ),))
+        ->add("poste", EntityType::class, array(
+            'class' => Poste::class
+        ))
         ->add("save", SubmitType::class, ["label" => "create Ticket"])
         ->getForm();
         $form->handleRequest($request);

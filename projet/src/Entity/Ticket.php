@@ -175,8 +175,20 @@ class Ticket
 
 	*/
 
+	/**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Poste", inversedBy="tickets")
+     */
+    private $poste;
 
+    public function getPoste()
+    {
+        return $this->poste;
+    }
 
+    public function setPoste(Poste $poste)
+    {
+        $this->poste = $poste;
+    }
 
 
 
