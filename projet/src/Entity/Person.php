@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
  */
-class Person
+class Person implements UserInterface
 {
     /**
      * @ORM\Id
@@ -34,7 +34,7 @@ class Person
      * 
 	 * @ORM\Column(type="text", length=255)
 	 */
-	protected $userName;
+	protected $username;
 	
 	/**
      * 
@@ -42,89 +42,69 @@ class Person
 	 */
 	protected $password;
 
-
 	/**
-	* Get Id
-	* @return integer
-	*/
+     * 
+	 * @ORM\Column(type="text", length=255)
+	 */
+	protected $role;
+
+
+
 	public function getId(){
 		return $this->id;
 	}
 	
-	/**
-	* Get firstName
-	* @return string
-	*/
 	public function getFirstName(){
 		return $this->firstName;
 	}
 
-	/**
-	* Set firstName
-	* @param string $name
-	* @return Person
-	*/
 	public function setFirstName($name){
-		$this ->firstName = $name;
+		$this->firstName = $name;
 	}
 	
-	/**
-	* Get lastName
-	* @return string
-	*/
 	public function getLastName(){
 		return $this->lastName;
 	}
 
-	/**
-	* Set lastName
-	* @param string $name
-	* @return Person
-	*/
 	public function setLastName($name){
-		$this ->lastName = $name;
+		$this->lastName = $name;
 	}
 	
-	/**
-	* Get userName
-	* @return string
-	*/
-	public function getUserName(){
-		return $this->userName;
+	public function getUsername(){
+		return $this->username;
 	}
 
-	/**
-	* Set userName
-	* @param string $name
-	* @return Person
-	*/
-	public function setUserName($user){
-		$this ->userName = $user;
+	public function setUsername($user){
+		$this->username = $user;
 	}
 	
-	/**
-	* Get password
-	* @return string
-	*/
 	public function getPassword(){
 		return $this->password;
 	}
 
-	/**
-	* Set userName
-	* @param string $name
-	* @return Person
-	*/
 	public function setPassword($pass){
-		$this ->password = $pass;
+		$this->password = $pass;
+	}
+
+	public function getRole(){
+		return $this->role;
+	}
+	public function setRole($role){
+		$this->role = $role;
 	}
 	
 	
-	
-	
-	
-	
-	
+	public function getSalt(){
+		return null;
+	}
+
+
+	public function getRoles(){
+		return array($this->role);
+	}
+	public function eraseCredentials(){
+
+	}
 	
 	
 	

@@ -8,21 +8,33 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template; 
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Person;
 
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+
 class PersonController extends Controller
 {
-	
-	/**
-     * @Route("/connect", name="person_connect")
+    /**
+     * @Route("/login", name="login")
      * @Template("main/connect.html.twig")
      */
-	public function connect(){
-		return $this->render("main/connect.html.twig", ["project_name" => "yourProject"]);
-	}
+    public function login(Request $request, AuthenticationUtils $authenticationUtils){
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+        
+        return $this->render("main\connect.html.twig",  array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
+    }
 
 	/**
      * @Route("/person/add", name="person_add")
@@ -36,6 +48,11 @@ class PersonController extends Controller
         ->add("lastname", TextType::class)
         ->add("username", TextType::class)
         ->add("password", PasswordType::class)
+        ->add("role", ChoiceType::class, array('choices'=>array(
+            'Demandeur' => 'ROLE_DEM',
+            'Opérateur' => 'ROLE_OP',
+            'Responsable service' => 'ROLE_ADMIN',
+        ),))
         
         ->add("save", SubmitType::class, ["label" => "create person"])
         ->getForm();
