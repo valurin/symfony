@@ -29,3 +29,5 @@ person_del:
 login:
     path: /login
     controller: App\Controller\PersonController::login
+user_logout:
+    path: /logout

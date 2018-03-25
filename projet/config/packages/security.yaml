@@ -7,10 +7,15 @@ security:
                 property: username
         in_memory: { memory: ~ }
     firewalls:
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            logout:
+                invalidate_session: true
+                path: /logout
+                target: /login
             provider: my_db_provider
             anonymous: ~
             form_login:
@@ -35,9 +40,9 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/person/add, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/ticket, roles: ROLE_DEM }
-        - { path: ^/, roles: ROLE_OP }
-        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/ticket/add, roles: ROLE_DEM }
+        - { path: ^/ticket/all, roles: ROLE_OP }
+        #- { path: ^/, roles: ROLE_USER }
 
 
     encoders:

@@ -6,20 +6,30 @@
         <title>{% block title %}Ticket{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
-    {% block body %}
+    
     <body>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
         <div>
             <a href="{{ url("app_ticket") }}">Ticket</a>
+
+            {% if is_granted('ROLE_OP') %}
             <a href="{{ url("ticket.all") }}">Tous les tickets</a>
-            <a href="{{ url("ticket.add") }}">Ajouter un ticket</a>
+            {%endif%}
+
+            {% if is_granted('ROLE_DEM') %}
+                <a href="{{ url("ticket.add") }}">Ajouter un ticket</a>
+            {%endif%}
+
             <a href="{{ url("app_home") }}">Page d'accueil</a>
+            <a href="{{ path('user_logout') }}">Logout</a>
+
         </div>
         {% endif %}
         
         {% block javascripts %}{% endblock %}
     </body>
+    {% block body %}
     {% endblock %}
     <footer>
         <hr/>
