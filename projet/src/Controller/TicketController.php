@@ -33,19 +33,19 @@ class TicketController extends Controller
         if($ticket ==null )
             $ticket = new Ticket();
         $form = $this->createFormBuilder($ticket)
-        ->add("name", TextType::class)
-        ->add("releaseOn", DateType::class, ["widget" => "single_text"])
-        ->add("description", TextType::class)
-        ->add("urgence", ChoiceType::class, array('choices'=>array(
-            'Peu urgent' => 1,
-            'Urgent' =>2,
-            'Très urgent' =>3,
-        ),))
-        ->add("poste", EntityType::class, array(
-            'class' => Poste::class
-        ))
-        ->add("save", SubmitType::class, ["label" => "create Ticket"])
-        ->getForm();
+			->add("name", TextType::class)
+			->add("releaseOn", DateType::class, ["widget" => "single_text"])
+			->add("description", TextType::class)
+			->add("urgence", ChoiceType::class, array('choices'=>array(
+				'Peu urgent' => 1,
+				'Urgent' =>2,
+				'Très urgent' =>3,
+			),))
+			->add("poste", EntityType::class, array(
+				'class' => Poste::class
+			))
+			->add("save", SubmitType::class, ["label" => "create Ticket"])
+			->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();

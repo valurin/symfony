@@ -41,7 +41,7 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/person/add, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/ticket/add, roles: ROLE_DEM }
-        - { path: ^/ticket/all, roles: ROLE_OP }
+        - { path: ^/ticket/all, roles: ROLE_ADMIN }
         #- { path: ^/, roles: ROLE_USER }
 
 
