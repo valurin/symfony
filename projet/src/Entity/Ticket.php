@@ -190,6 +190,6 @@ class Ticket
         $this->poste = $poste;
     }
 
-
+	
 
 }

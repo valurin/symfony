@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
  */
@@ -47,6 +49,8 @@ class Person implements UserInterface
 	 * @ORM\Column(type="text", length=255)
 	 */
 	protected $role;
+	
+	
 
 
 
